@@ -1,1 +1,8 @@
-
+spring:
+  profiles: default, test, local
+  data:
+    mongodb:
+      host: localhost
+      port: 0
+      database:
+        'awards'
