@@ -1,0 +1,18 @@
+{
+  "nominationForms": [
+    {
+      "userId": "1234",
+      "nominations": {
+        "categoryOne": "name"
+      }
+    },
+    {
+      "userId": "4321",
+      "nominations": {
+        "categoryOne": "someone",
+        "categoryTwo": "another person",
+        "categoryThree": "a third person?"
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "userId": "4321",
+  "nominations": {
+    "categoryOne": "someone",
+    "categoryTwo": "another person",
+    "categoryThree": "a third person?"
+  }
+}

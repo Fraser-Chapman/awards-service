@@ -1,13 +1,20 @@
 package uk.co.tissueinc.awardsservice.repository.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import uk.co.tissueinc.awardsservice.service.model.NominationsForm;
 
 import java.util.Map;
 
+@Document(collection = "nominations")
 public class NominationsFormEntity {
 
+    @Id
     private String userId;
     private Map<String, String> nominations;
+
+    public NominationsFormEntity() {
+    }
 
     public NominationsFormEntity(String userId, Map<String, String> nominations) {
         this.userId = userId;
