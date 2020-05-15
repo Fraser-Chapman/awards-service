@@ -22,6 +22,7 @@ class AwardsServiceTest {
     private static final String PERSON_2 = "person2";
     private static final String USER_1 = "user1";
     private static final String USER_2 = "user2";
+
     private AwardsService testSubject;
 
     @Mock
