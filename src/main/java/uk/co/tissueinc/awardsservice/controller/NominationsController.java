@@ -24,6 +24,7 @@ public class NominationsController {
     @PostMapping(produces = "application/json")
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
+    //TODO make into an upsert and use hashed IP address as primary key.
     public NominationsFormRepresentation saveNominations(@RequestBody NominationsFormRepresentation nominations) {
         return new NominationsFormRepresentation(nominationsService.saveNominations(nominations.toDomain()));
     }
