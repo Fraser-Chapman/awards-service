@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import uk.co.tissueinc.awardsservice.service.model.CategoryAward;
 import uk.co.tissueinc.awardsservice.service.model.NominationsForm;
 
-import java.util.*;
 import java.util.AbstractMap.SimpleEntry;
+import java.util.*;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
@@ -32,8 +32,7 @@ public class AwardsService {
 
                 if (Objects.nonNull(personNominationCount.get(nominee))) {
                     personNominationCount.put(nominee, personNominationCount.get(nominee) + 1);
-                }
-                else {
+                } else {
                     personNominationCount.put(nominee, 1);
                 }
             });
@@ -50,8 +49,7 @@ public class AwardsService {
                     for (Entry<String, Integer> nominee : entry.getValue().entrySet()) {
                         if (currentWinner.getValue() < nominee.getValue()) {
                             currentWinner = nominee;
-                        }
-                        else if (currentWinner.getValue().equals(nominee.getValue())) {
+                        } else if (currentWinner.getValue().equals(nominee.getValue())) {
                             final String jointWinnerName = String.format("%s, %s", currentWinner.getKey(), nominee.getKey());
                             currentWinner = new SimpleEntry<>(jointWinnerName, currentWinner.getValue());
                         }

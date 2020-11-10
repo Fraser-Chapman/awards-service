@@ -22,7 +22,7 @@ public class NominationsFormEntity {
     }
 
     public NominationsFormEntity(NominationsForm domain) {
-         this(domain.getUserId(), domain.getNominations());
+        this(domain.getUserId(), domain.getNominations());
     }
 
     public String getUserId() {
