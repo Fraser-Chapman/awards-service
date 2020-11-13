@@ -7,15 +7,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { AppComponent } from './container/app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
+import { NominationsFormContainerComponentComponent } from './components/nominations-form-container-component/nominations-form-container-component.component';
 import { EffectsModule } from '@ngrx/effects';
-import { NavigationBarComponent } from './components/navigation-bar/navigation-bar-component';
-import {NominationsFormContainerComponent} from './components/nominations-form-container/nominations-form-container.component';
+import { NavigationBarComponentComponent } from './components/navigation-bar-component/navigation-bar-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NominationsFormContainerComponent,
-    NavigationBarComponent,
+    NominationsFormContainerComponentComponent,
+    NavigationBarComponentComponent
   ],
   imports: [
     BrowserModule,
