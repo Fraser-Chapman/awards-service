@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { NominationsFormContainerComponentComponent } from './nominations-form-container-component.component';
+import { NominationsFormContainerComponent } from './nominations-form-container.component';
 
 describe('NominationsFormContainerComponentComponent', () => {
-  let component: NominationsFormContainerComponentComponent;
-  let fixture: ComponentFixture<NominationsFormContainerComponentComponent>;
+  let component: NominationsFormContainerComponent;
+  let fixture: ComponentFixture<NominationsFormContainerComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ NominationsFormContainerComponentComponent ]
+      declarations: [ NominationsFormContainerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NominationsFormContainerComponentComponent);
+    fixture = TestBed.createComponent(NominationsFormContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
