@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Categories } from 'src/app/services/categories-service/model/categories.model.ts';
 
-const namespace = '[Categories]';
+const namespace = '[categories]';
 
 export const GET_CATEGORIES = `${namespace} GET_CATEGORIES`;
 export const GET_CATEGORIES_SUCCESS = `${namespace} GET_CATEGORIES_SUCCESS`;
