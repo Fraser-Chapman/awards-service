@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
-import {GetCategoriesAction} from '../../state/categories/categories.actions';
 import {getCategories} from '../../state/categories/categories.selector';
 import {Observable} from 'rxjs';
+import {SubmitNominationsAction} from '../../state/nominations/nominations.actions';
+import {getSubmitNominationsState} from '../../state/nominations/nominations.selector';
 
 @Component({
   selector: 'app-nominations-form-container-component',
@@ -11,16 +12,18 @@ import {Observable} from 'rxjs';
 })
 export class NominationsFormContainerComponent implements OnInit {
 
-  categories: Observable<string[]>;
+  categories$: Observable<string[]>;
+  submitState$: Observable<string>;
 
   constructor(private store: Store<any>) { }
 
   ngOnInit() {
-    this.categories = this.store.select(getCategories);
+    this.categories$ = this.store.select(getCategories);
+    this.submitState$ = this.store.select(getSubmitNominationsState);
   }
 
-  public getCategories(): void {
-    this.store.dispatch(new GetCategoriesAction());
+  submit(nominations: Map<string, string>): void {
+    this.store.dispatch(new SubmitNominationsAction(nominations));
   }
 
 }

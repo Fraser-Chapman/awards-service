@@ -1,0 +1,14 @@
+<mat-card>
+  <div *ngFor="let category of categories">
+    <mat-form-field appearance="fill">
+      <mat-label>{{category}}</mat-label>
+      <input type="text" matInput [ngModel]="nominations.get(category)" (ngModelChange)="nominations.set(category, $event)">
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-button (click)="submit()">Submit</button>
+    <ng-template *ngIf="submitState==='FETCHING'">
+      <mat-progress-bar type="indeterminate"></mat-progress-bar>
+    </ng-template>
+  </div>
+</mat-card>

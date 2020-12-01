@@ -15,12 +15,23 @@ import {RouterModule} from '@angular/router';
 import {ROUTES} from './routes';
 import {categoriesReducer} from './state/categories/categories.reducer';
 import {CategoriesEffects} from './state/categories/categories.effects';
+import { NominationsFormComponent } from './components/nominations-form/nominations-form.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule} from '@angular/forms';
+import {NominationsEffects} from './state/nominations/nominations.effects';
+import {nominationsReducer} from './state/nominations/nominations.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
     AppComponent,
     NominationsFormContainerComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    NominationsFormComponent
   ],
   imports: [
     BrowserModule,
@@ -28,11 +39,21 @@ import {CategoriesEffects} from './state/categories/categories.effects';
     HttpClientModule,
     StoreModule.forRoot({}),
     StoreModule.forFeature('categories', categoriesReducer),
+    StoreModule.forFeature('nominations', nominationsReducer),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
     EffectsModule.forRoot([]),
-    EffectsModule.forFeature([CategoriesEffects]),
+    EffectsModule.forFeature([CategoriesEffects, NominationsEffects]),
     RouterModule.forRoot(ROUTES),
     MatToolbarModule,
     MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatProgressBarModule,
+    FormsModule,
   ],
   providers: [
     NominationsFormResolver

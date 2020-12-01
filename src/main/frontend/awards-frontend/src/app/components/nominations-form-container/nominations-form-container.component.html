@@ -1,5 +1,5 @@
-<p>
-  nominations-form-container-component works!
-</p>
-
-{{categories | async | json}}
+<app-nominations-form
+  [categories]="categories$ | async"
+  [submitState]="submitState$ | async"
+  (submitButtonClick)="submit($event)"
+></app-nominations-form>
