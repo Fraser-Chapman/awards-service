@@ -7,8 +7,8 @@
   </div>
   <div>
     <button mat-button (click)="submit()">Submit</button>
-    <ng-template *ngIf="submitState==='FETCHING'">
-      <mat-progress-bar type="indeterminate"></mat-progress-bar>
-    </ng-template>
+    <div id="progress-bar-container" *ngIf="isSubmitStateFetching()">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
   </div>
 </mat-card>

@@ -3,7 +3,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 @Component({
   selector: 'app-nominations-form',
   templateUrl: './nominations-form.component.html',
-  styleUrls: ['./nominations-form.component.sass']
+  styleUrls: ['./nominations-form.component.scss']
 })
 export class NominationsFormComponent implements OnInit {
 
@@ -20,6 +20,10 @@ export class NominationsFormComponent implements OnInit {
 
   submit(): void {
     this.submitButtonClick.emit(this.nominations);
+  }
+
+  isSubmitStateFetching(): boolean {
+    return this.submitState === 'FETCHING';
   }
 
 }
