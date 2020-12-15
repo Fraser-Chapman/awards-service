@@ -42,7 +42,7 @@ public class NominationsControllerIntegrationTest {
     @Test
     public void shouldSaveNomination() throws Exception {
         //given
-        String requestBody = FileResources.load("integration/nominations/save/NominationsRequestBody.json");
+        String requestBody = FileResources.fromFile("integration/nominations/save/NominationsRequestBody.json");
 
         //when
         result = mockMvc.perform(post("/api/nominations")
@@ -56,15 +56,15 @@ public class NominationsControllerIntegrationTest {
     @Test
     public void shouldGetAllNominations() throws Exception {
         //given
-        saveNomination(FileResources.load("integration/nominations/save/NominationsRequestBody.json"));
-        saveNomination(FileResources.load("integration/nominations/save/AnotherNominationsRequestBody.json"));
+        saveNomination(FileResources.fromFile("integration/nominations/save/NominationsRequestBody.json"));
+        saveNomination(FileResources.fromFile("integration/nominations/save/AnotherNominationsRequestBody.json"));
 
         //when
         result = mockMvc.perform(get("/api/nominations"))
                 .andReturn();
 
         thenResponseCodeIs(OK);
-        thenResponseIsIdenticalTo(FileResources.load("integration/nominations/get/GetAllResponse.json"));
+        thenResponseIsIdenticalTo(FileResources.fromFile("integration/nominations/get/GetAllResponse.json"));
     }
 
     private void saveNomination(String nominationForm) throws Exception {

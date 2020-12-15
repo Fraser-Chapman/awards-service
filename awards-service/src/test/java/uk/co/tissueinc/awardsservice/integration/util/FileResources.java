@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class FileResources {
 
-    public static String load(String resourceName) {
+    public static String fromFile(String resourceName) {
         try {
             return IOUtils.toString(FileResources.class.getClassLoader().getResourceAsStream(resourceName));
         } catch (IOException e) {
