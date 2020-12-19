@@ -11,10 +11,6 @@ export class CategoriesService {
   constructor(private http: HttpClient) { }
 
   public getCategories$(): Observable<Categories> {
-    const stubCategories: Categories = {
-      categories: ['Future President', 'Most likely to go to prison']
-    };
-
-    return of(stubCategories);
+    return this.http.get<Categories>('/api/categories');
   }
 }

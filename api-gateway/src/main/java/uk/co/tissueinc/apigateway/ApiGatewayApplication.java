@@ -16,8 +16,8 @@ public class ApiGatewayApplication {
 	@Bean
 	public RouteLocator routeLocator(RouteLocatorBuilder builder) {
 		return builder.routes()
-				.route("front-end", route -> route.path("/**").uri("http://localhost:4200"))
 				.route("awards-service-api", route -> route.path("/api/**").uri("http://localhost:8080"))
+				.route("front-end", route -> route.path("/**").uri("http://localhost:4200"))
 				.build();
 	}
 
