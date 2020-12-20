@@ -33,7 +33,7 @@ describe('NominationsService', () => {
 
       service.submitNotifications$(payload);
 
-      expect(httpClientSpy).toHaveBeenCalledWith('http://localhost:8080/api/nominations', {userId: 'x', nominations: expectedPayload});
+      expect(httpClientSpy).toHaveBeenCalledWith('/api/nominations', expectedPayload);
     });
   });
 });
