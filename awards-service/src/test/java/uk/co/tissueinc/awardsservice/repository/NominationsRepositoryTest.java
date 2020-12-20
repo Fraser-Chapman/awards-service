@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import uk.co.tissueinc.awardsservice.repository.model.NominationsFormEntity;
+import uk.co.tissueinc.awardsservice.service.RequestDetailsService;
 import uk.co.tissueinc.awardsservice.service.model.NominationsForm;
 
 import java.util.List;
@@ -31,9 +32,12 @@ class NominationsRepositoryTest {
     @Mock
     private NominationsCRUDRepository nominationsCRUDRepository;
 
+    @Mock
+    private RequestDetailsService requestDetailsService;
+
     @BeforeEach
     public void beforeEach() {
-        nominationsRepository = new NominationsRepository(nominationsCRUDRepository);
+        nominationsRepository = new NominationsRepository(nominationsCRUDRepository, requestDetailsService);
     }
 
     @Test
@@ -41,9 +45,10 @@ class NominationsRepositoryTest {
         NominationsForm nominationsForm = new NominationsForm(USER_ID_1, NOMINATIONS);
         NominationsFormEntity expectedEntity = new NominationsFormEntity(USER_ID_1, NOMINATIONS);
 
+        when(requestDetailsService.getxForwardedFor()).thenReturn(USER_ID_1);
         when(nominationsCRUDRepository.save(refEq(expectedEntity))).thenReturn(expectedEntity);
 
-        NominationsForm result = nominationsRepository.saveForm(nominationsForm);
+        NominationsForm result = nominationsRepository.saveForm(NOMINATIONS);
 
         assertThat(result).isEqualToComparingFieldByField(nominationsForm);
     }

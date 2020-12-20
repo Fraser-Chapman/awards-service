@@ -38,9 +38,9 @@ class NominationsServiceTest {
     @Test
     public void saveNominationsShouldReturnSavedNominationsFromRepository() {
         NominationsForm nominationsForm = new NominationsForm(USER_ID_1, NOMINATIONS);
-        when(nominationsRepository.saveForm(nominationsForm)).thenReturn(nominationsForm);
+        when(nominationsRepository.saveForm(NOMINATIONS)).thenReturn(nominationsForm);
 
-        NominationsForm result = nominationsService.saveNominations(nominationsForm);
+        NominationsForm result = nominationsService.saveNominations(NOMINATIONS);
 
         assertThat(result).isEqualTo(nominationsForm);
     }

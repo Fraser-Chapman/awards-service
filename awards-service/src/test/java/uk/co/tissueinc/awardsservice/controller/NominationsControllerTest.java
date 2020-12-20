@@ -42,9 +42,9 @@ class NominationsControllerTest {
     public void saveNominationsShouldReturnNominationsFromService() {
         NominationsFormRepresentation expectedResult = new NominationsFormRepresentation(USER_ID_1, NOMINATIONS);
         NominationsForm nominationsForm = new NominationsForm(USER_ID_1, NOMINATIONS);
-        when(nominationsService.saveNominations(refEq(nominationsForm))).thenReturn(nominationsForm);
+        when(nominationsService.saveNominations(refEq(NOMINATIONS))).thenReturn(nominationsForm);
 
-        NominationsFormRepresentation result = nominationsController.saveNominations(expectedResult);
+        NominationsFormRepresentation result = nominationsController.saveNominations(NOMINATIONS);
 
         assertThat(result).usingRecursiveComparison().isEqualTo(expectedResult);
     }

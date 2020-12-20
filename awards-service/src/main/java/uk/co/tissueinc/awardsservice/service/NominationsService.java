@@ -6,6 +6,7 @@ import uk.co.tissueinc.awardsservice.repository.NominationsRepository;
 import uk.co.tissueinc.awardsservice.service.model.NominationsForm;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class NominationsService {
@@ -17,7 +18,7 @@ public class NominationsService {
         this.nominationsRepository = nominationsRepository;
     }
 
-    public NominationsForm saveNominations(NominationsForm nominations) {
+    public NominationsForm saveNominations(Map<String, String> nominations) {
         return nominationsRepository.saveForm(nominations);
     }
 

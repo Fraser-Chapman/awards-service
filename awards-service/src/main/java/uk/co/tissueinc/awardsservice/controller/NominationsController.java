@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import uk.co.tissueinc.awardsservice.controller.model.NominationsFormRepresentation;
 import uk.co.tissueinc.awardsservice.controller.model.NominationsFormsRepresentation;
 import uk.co.tissueinc.awardsservice.service.NominationsService;
+import uk.co.tissueinc.awardsservice.service.RequestDetailsService;
 
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -25,8 +27,8 @@ public class NominationsController {
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     //TODO make into an upsert and use hashed IP address as primary key.
-    public NominationsFormRepresentation saveNominations(@RequestBody NominationsFormRepresentation nominations) {
-        return new NominationsFormRepresentation(nominationsService.saveNominations(nominations.toDomain()));
+    public NominationsFormRepresentation saveNominations(@RequestBody Map<String, String> nominations) {
+        return new NominationsFormRepresentation(nominationsService.saveNominations(nominations));
     }
 
     @GetMapping(produces = "application/json")
