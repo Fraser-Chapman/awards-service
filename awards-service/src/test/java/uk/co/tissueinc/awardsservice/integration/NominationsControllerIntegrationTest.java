@@ -42,7 +42,7 @@ public class NominationsControllerIntegrationTest {
     }
 
     @Test
-    public void shouldSaveNomination() throws Exception {
+    public void shouldUpsertNomination() throws Exception {
         //given
         String requestBody = FileResources.fromFile("integration/nominations/save/NominationsRequestBody.json");
 
@@ -58,8 +58,8 @@ public class NominationsControllerIntegrationTest {
     @Test
     public void shouldGetAllNominations() throws Exception {
         //given
-        saveNomination(FileResources.fromFile("integration/nominations/save/NominationsRequestBody.json"), USER_ID_1);
-        saveNomination(FileResources.fromFile("integration/nominations/save/AnotherNominationsRequestBody.json"), USER_ID_2);
+        upsertNomination(FileResources.fromFile("integration/nominations/save/NominationsRequestBody.json"), USER_ID_1);
+        upsertNomination(FileResources.fromFile("integration/nominations/save/AnotherNominationsRequestBody.json"), USER_ID_2);
 
         //when
         result = mockMvc.perform(get("/api/nominations"))
@@ -69,7 +69,7 @@ public class NominationsControllerIntegrationTest {
         thenResponseIsIdenticalTo(FileResources.fromFile("integration/nominations/get/GetAllResponse.json"));
     }
 
-    private void saveNomination(String nominationForm, String userId) throws Exception {
+    private void upsertNomination(String nominationForm, String userId) throws Exception {
         mockMvc.perform(post("/api/nominations")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("X-Forwarded-For", userId)

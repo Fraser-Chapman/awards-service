@@ -22,7 +22,7 @@ public class NominationsRepository {
         this.requestDetailsService = requestDetailsService;
     }
 
-    public NominationsForm saveForm(Map<String, String> nominations) {
+    public NominationsForm upsertForm(Map<String, String> nominations) {
         final String clientIp = requestDetailsService.getxForwardedFor();
         final NominationsFormEntity entity = new NominationsFormEntity(clientIp, nominations);
         return this.nominationsCRUDRepository.save(entity).toDomain();

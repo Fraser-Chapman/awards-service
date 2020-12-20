@@ -18,8 +18,8 @@ public class NominationsService {
         this.nominationsRepository = nominationsRepository;
     }
 
-    public NominationsForm saveNominations(Map<String, String> nominations) {
-        return nominationsRepository.saveForm(nominations);
+    public NominationsForm upsertNominations(Map<String, String> nominations) {
+        return nominationsRepository.upsertForm(nominations);
     }
 
     public List<NominationsForm> getNominations() {

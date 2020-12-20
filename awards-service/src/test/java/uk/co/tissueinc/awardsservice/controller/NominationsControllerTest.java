@@ -39,12 +39,12 @@ class NominationsControllerTest {
     }
 
     @Test
-    public void saveNominationsShouldReturnNominationsFromService() {
+    public void upsertNominationsShouldReturnNominationsFromService() {
         NominationsFormRepresentation expectedResult = new NominationsFormRepresentation(USER_ID_1, NOMINATIONS);
         NominationsForm nominationsForm = new NominationsForm(USER_ID_1, NOMINATIONS);
-        when(nominationsService.saveNominations(refEq(NOMINATIONS))).thenReturn(nominationsForm);
+        when(nominationsService.upsertNominations(refEq(NOMINATIONS))).thenReturn(nominationsForm);
 
-        NominationsFormRepresentation result = nominationsController.saveNominations(NOMINATIONS);
+        NominationsFormRepresentation result = nominationsController.upsertNominations(NOMINATIONS);
 
         assertThat(result).usingRecursiveComparison().isEqualTo(expectedResult);
     }

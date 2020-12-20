@@ -41,14 +41,14 @@ class NominationsRepositoryTest {
     }
 
     @Test
-    public void saveNominationsShouldReturnSavedNominations() {
+    public void upsertNominationsShouldReturnSavedNominations() {
         NominationsForm nominationsForm = new NominationsForm(USER_ID_1, NOMINATIONS);
         NominationsFormEntity expectedEntity = new NominationsFormEntity(USER_ID_1, NOMINATIONS);
 
         when(requestDetailsService.getxForwardedFor()).thenReturn(USER_ID_1);
         when(nominationsCRUDRepository.save(refEq(expectedEntity))).thenReturn(expectedEntity);
 
-        NominationsForm result = nominationsRepository.saveForm(NOMINATIONS);
+        NominationsForm result = nominationsRepository.upsertForm(NOMINATIONS);
 
         assertThat(result).isEqualToComparingFieldByField(nominationsForm);
     }
