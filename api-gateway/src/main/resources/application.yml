@@ -4,9 +4,13 @@ server:
 spring:
   application:
     name: api-gateway
-#  cloud:
-#    gateway:
-#      routes:
-#        - id: front-end
-#          path: /**
-#          uri: http://localhost:4200
+
+# Uncomment to enable debug logging
+#logging:
+#  level:
+#    reactor:
+#      netty: INFO
+#    org:
+#      springframework:
+#        cloud:
+#          gateway: TRACE
