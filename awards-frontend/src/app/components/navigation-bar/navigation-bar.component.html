@@ -1,9 +1,9 @@
 <mat-toolbar>
   <span>Awards Service</span>
   <span>
-    <button mat-button>Submit Nominations</button>
+    <button mat-button (click)="redirect('nominate')">Submit Nominations</button>
   </span>
   <span>
-    <button mat-button>View Results</button>
+    <button mat-button (click)="redirect('results')">View Results</button>
   </span>
 </mat-toolbar>

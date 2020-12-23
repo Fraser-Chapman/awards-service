@@ -11,7 +11,7 @@ import { NominationsFormContainerComponent } from './components/nominations-form
 import { EffectsModule } from '@ngrx/effects';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import {NominationsFormResolver} from './resolvers/NominationsFormResolver';
-import {RouterModule} from '@angular/router';
+import {RouterLink, RouterModule} from '@angular/router';
 import {ROUTES} from './routes';
 import {categoriesReducer} from './state/categories/categories.reducer';
 import {CategoriesEffects} from './state/categories/categories.effects';
@@ -25,13 +25,17 @@ import {nominationsReducer} from './state/nominations/nominations.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {ViewResultsContainerComponent} from './components/view-results-container/view-results-container.component';
+import {ViewResultsComponent} from './components/view-results/view-results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NominationsFormContainerComponent,
     NavigationBarComponent,
-    NominationsFormComponent
+    NominationsFormComponent,
+    ViewResultsContainerComponent,
+    ViewResultsComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatFormFieldModule,
     MatInputModule,
     MatProgressBarModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [
     NominationsFormResolver
