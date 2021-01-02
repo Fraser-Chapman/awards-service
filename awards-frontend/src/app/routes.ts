@@ -1,8 +1,8 @@
 import {Routes} from '@angular/router';
-import {AppComponent} from './container/app.component';
 import {NominationsFormResolver} from './resolvers/NominationsFormResolver';
 import {ViewResultsContainerComponent} from './components/view-results-container/view-results-container.component';
 import {NominationsFormContainerComponent} from './components/nominations-form-container/nominations-form-container.component';
+import {ViewResultsResolver} from './resolvers/ViewResultsResolver';
 
 export const ROUTES: Routes = [
   {
@@ -12,7 +12,10 @@ export const ROUTES: Routes = [
   },
   {
     path: 'results',
-    component: ViewResultsContainerComponent
+    component: ViewResultsContainerComponent,
+    resolve: {
+      app: ViewResultsResolver
+    }
   },
   {
     path: 'nominate',
