@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Results} from '../../services/results-service/model/results';
 
 @Component({
   selector: 'app-view-results',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewResultsComponent implements OnInit {
 
+  @Input() resultsStatus: string;
+  @Input() results: Results;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  isStatusSuccess(): boolean {
+    return this.resultsStatus === 'SUCCESS';
+  }
+
+  isStatusFetching(): boolean {
+    return this.resultsStatus === 'FETCHING';
+  }
+
+  isStatusError(): boolean {
+    return this.resultsStatus === 'ERROR';
   }
 
 }

@@ -30,6 +30,7 @@ import {ViewResultsComponent} from './components/view-results/view-results.compo
 import {resultsReducer} from './state/results/results.reducer';
 import {ResultsEffects} from './state/results/results.effects';
 import {ViewResultsResolver} from './resolvers/ViewResultsResolver';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import {ViewResultsResolver} from './resolvers/ViewResultsResolver';
     MatFormFieldModule,
     MatInputModule,
     MatProgressBarModule,
+    MatProgressSpinnerModule,
     FormsModule
   ],
   providers: [

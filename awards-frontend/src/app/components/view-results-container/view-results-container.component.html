@@ -1,2 +1,4 @@
-<app-view-results></app-view-results>
-<p>view-results-container works!</p>
+<app-view-results
+  [resultsStatus]="resultsStatus$ | async"
+  [results]="results$ | async"
+></app-view-results>
