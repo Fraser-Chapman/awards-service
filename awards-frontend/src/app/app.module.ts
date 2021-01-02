@@ -29,7 +29,7 @@ import {ViewResultsContainerComponent} from './components/view-results-container
 import {ViewResultsComponent} from './components/view-results/view-results.component';
 import {resultsReducer} from './state/results/results.reducer';
 import {ResultsEffects} from './state/results/results.effects';
-import {ViewResultsResolver} from "./resolvers/ViewResultsResolver";
+import {ViewResultsResolver} from './resolvers/ViewResultsResolver';
 
 @NgModule({
   declarations: [
