@@ -8,6 +8,10 @@ RUN npm install
 
 COPY . .
 
+RUN npm run lint
+
+RUN npm run test
+
 RUN npm run build
 
 FROM nginx:1.17.1-alpine
