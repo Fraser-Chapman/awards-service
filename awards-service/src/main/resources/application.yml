@@ -1,7 +1,21 @@
-port: 8080
+server:
+  port: 5001
+
+---
 
 spring:
   profiles: default, test, local
+  data:
+    mongodb:
+      host: localhost
+      port: 0
+      database:
+        'awards'
+
+---
+
+spring:
+  profiles: docker
   data:
     mongodb:
       host: localhost

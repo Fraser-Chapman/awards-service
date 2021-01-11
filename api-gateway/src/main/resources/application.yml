@@ -1,23 +1,61 @@
 server:
   port: 5000
 
+#  Uncomment to enable debug logging
+logging:
+  level:
+    reactor:
+      netty: INFO
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE
+
 spring:
   application:
     name: api-gateway
 
-#  cloud:
-#    gateway:
-#      routes:
-#        - id: front-end
-#          path: /**
-#          uri: http://localhost:4200
+---
 
-# Uncomment to enable debug logging
-#logging:
-#  level:
-#    reactor:
-#      netty: INFO
-#    org:
-#      springframework:
-#        cloud:
-#          gateway: TRACE
+  spring:
+    profiles: default, local
+
+    cloud:
+      gateway:
+        routes:
+          -
+            id: awards-service-api
+            uri: http://localhost:5001
+            predicates:
+              - Path=/api/**
+            strip-prefix: false
+          -
+            id: front-end
+            uri: http://localhost:4200
+            predicates:
+              - Path=/**
+            strip-prefix: false
+
+
+---
+
+  spring:
+    profiles: docker
+
+    cloud:
+      gateway:
+        routes:
+          -
+            id: awards-service-api
+            uri: http://awards-service:5001
+            predicates:
+              - Path=/api/**
+            strip-prefix: false
+          -
+            id: front-end
+            uri: http://front-end:4200
+            predicates:
+              - Path=/**
+            strip-prefix: false
+
+
