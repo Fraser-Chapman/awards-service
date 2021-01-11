@@ -40,4 +40,8 @@ describe('NavigationBarComponentComponent', () => {
       expect(routerSpy.navigateByUrl).toHaveBeenCalledWith(expectedPath);
     });
   });
+
+  it('should fail', () => {
+    expect(true).toBeFalse();
+  });
 });
