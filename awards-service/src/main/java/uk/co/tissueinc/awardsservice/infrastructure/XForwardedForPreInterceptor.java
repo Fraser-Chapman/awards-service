@@ -21,6 +21,7 @@ public class XForwardedForPreInterceptor extends HandlerInterceptorAdapter {
     @Override
     //TODO hash IP address
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        System.out.println("=========================  In client-ip interceptor  =========================");
         final String clientIp = request.getHeader("X-Forwarded-For");
         requestDetailsService.setxForwardedFor(clientIp);
         System.out.printf("------------------------ Client-ip: %s ------------------------", clientIp);
