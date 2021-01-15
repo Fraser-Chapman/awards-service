@@ -23,6 +23,7 @@ public class XForwardedForPreInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         final String clientIp = request.getHeader("X-Forwarded-For");
         requestDetailsService.setxForwardedFor(clientIp);
+        System.out.printf("------------------------ Client-ip: %s ------------------------", clientIp);
 
         return true;
     }
