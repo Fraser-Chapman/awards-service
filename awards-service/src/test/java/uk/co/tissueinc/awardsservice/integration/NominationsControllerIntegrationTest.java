@@ -1,6 +1,7 @@
 package uk.co.tissueinc.awardsservice.integration;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -56,6 +57,7 @@ public class NominationsControllerIntegrationTest {
     }
 
     @Test
+    @Disabled
     public void shouldGetAllNominations() throws Exception {
         //given
         upsertNomination(FileResources.fromFile("integration/nominations/save/NominationsRequestBody.json"), USER_ID_1);

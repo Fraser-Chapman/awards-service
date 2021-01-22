@@ -8,6 +8,7 @@ import uk.co.tissueinc.awardsservice.service.model.NominationsForm;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Repository
@@ -23,8 +24,8 @@ public class NominationsRepository {
     }
 
     public NominationsForm upsertForm(Map<String, String> nominations) {
-        final String clientIp = requestDetailsService.getxForwardedFor();
-        final NominationsFormEntity entity = new NominationsFormEntity(clientIp, nominations);
+//        final String clientIp = requestDetailsService.getxForwardedFor();
+        final NominationsFormEntity entity = new NominationsFormEntity(String.valueOf(new Random().nextInt()), nominations);
         return this.nominationsCRUDRepository.save(entity).toDomain();
     }
 

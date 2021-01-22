@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.refEq;
 import static org.mockito.Mockito.when;
 
@@ -42,11 +43,12 @@ class NominationsRepositoryTest {
 
     @Test
     public void upsertNominationsShouldReturnSavedNominations() {
-        NominationsForm nominationsForm = new NominationsForm(USER_ID_1, NOMINATIONS);
-        NominationsFormEntity expectedEntity = new NominationsFormEntity(USER_ID_1, NOMINATIONS);
+        final NominationsForm nominationsForm = new NominationsForm(USER_ID_1, NOMINATIONS);
+        final NominationsFormEntity expectedEntity = new NominationsFormEntity(USER_ID_1, NOMINATIONS);
 
-        when(requestDetailsService.getxForwardedFor()).thenReturn(USER_ID_1);
-        when(nominationsCRUDRepository.save(refEq(expectedEntity))).thenReturn(expectedEntity);
+//        when(requestDetailsService.getxForwardedFor()).thenReturn(USER_ID_1);
+//        when(nominationsCRUDRepository.save(refEq(expectedEntity))).thenReturn(expectedEntity);
+        when(nominationsCRUDRepository.save(any(NominationsFormEntity.class))).thenReturn(expectedEntity);
 
         NominationsForm result = nominationsRepository.upsertForm(NOMINATIONS);
 
