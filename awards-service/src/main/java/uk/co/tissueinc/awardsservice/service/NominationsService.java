@@ -18,8 +18,8 @@ public class NominationsService {
         this.nominationsRepository = nominationsRepository;
     }
 
-    public NominationsForm upsertNominations(Map<String, String> nominations) {
-        return nominationsRepository.upsertForm(nominations);
+    public NominationsForm upsertNominations(String userId, Map<String, String> nominations) {
+        return nominationsRepository.upsertForm(userId, nominations);
     }
 
     public List<NominationsForm> getNominations() {

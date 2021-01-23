@@ -22,11 +22,11 @@ public class NominationsController {
         this.nominationsService = nominationsService;
     }
 
-    @PostMapping(produces = "application/json")
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
-    public NominationsFormRepresentation upsertNominations(@RequestBody Map<String, String> nominations) {
-        return new NominationsFormRepresentation(nominationsService.upsertNominations(nominations));
+    @PostMapping(path = "/{userId}", produces = "application/json")
+    public NominationsFormRepresentation upsertNominations(@PathVariable("userId") String userId, @RequestBody Map<String, String> nominations) {
+        return new NominationsFormRepresentation(nominationsService.upsertNominations(userId, nominations));
     }
 
     @GetMapping(produces = "application/json")

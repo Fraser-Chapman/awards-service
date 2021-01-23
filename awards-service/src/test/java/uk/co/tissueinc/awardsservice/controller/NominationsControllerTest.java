@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.refEq;
 import static org.mockito.Mockito.when;
 
@@ -42,9 +43,9 @@ class NominationsControllerTest {
     public void upsertNominationsShouldReturnNominationsFromService() {
         NominationsFormRepresentation expectedResult = new NominationsFormRepresentation(USER_ID_1, NOMINATIONS);
         NominationsForm nominationsForm = new NominationsForm(USER_ID_1, NOMINATIONS);
-        when(nominationsService.upsertNominations(refEq(NOMINATIONS))).thenReturn(nominationsForm);
+        when(nominationsService.upsertNominations(eq(USER_ID_1), refEq(NOMINATIONS))).thenReturn(nominationsForm);
 
-        NominationsFormRepresentation result = nominationsController.upsertNominations(NOMINATIONS);
+        NominationsFormRepresentation result = nominationsController.upsertNominations(USER_ID_1, NOMINATIONS);
 
         assertThat(result).usingRecursiveComparison().isEqualTo(expectedResult);
     }

@@ -23,9 +23,9 @@ public class NominationsRepository {
         this.requestDetailsService = requestDetailsService;
     }
 
-    public NominationsForm upsertForm(Map<String, String> nominations) {
+    public NominationsForm upsertForm(String userId, Map<String, String> nominations) {
 //        final String clientIp = requestDetailsService.getxForwardedFor();
-        final NominationsFormEntity entity = new NominationsFormEntity(String.valueOf(new Random().nextInt()), nominations);
+        final NominationsFormEntity entity = new NominationsFormEntity(userId, nominations);
         return this.nominationsCRUDRepository.save(entity).toDomain();
     }
 

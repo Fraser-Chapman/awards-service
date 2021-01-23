@@ -19,6 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
+import static uk.co.tissueinc.awardsservice.integration.util.FileResources.fromFile;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -45,10 +46,10 @@ public class NominationsControllerIntegrationTest {
     @Test
     public void shouldUpsertNomination() throws Exception {
         //given
-        String requestBody = FileResources.fromFile("integration/nominations/save/NominationsRequestBody.json");
+        String requestBody = fromFile("integration/nominations/save/NominationsRequestBody.json");
 
         //when
-        result = mockMvc.perform(post("/api/nominations")
+        result = mockMvc.perform(post(String.format("/api/nominations/%s", USER_ID_1))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
                 .andReturn();
@@ -57,22 +58,21 @@ public class NominationsControllerIntegrationTest {
     }
 
     @Test
-    @Disabled
     public void shouldGetAllNominations() throws Exception {
         //given
-        upsertNomination(FileResources.fromFile("integration/nominations/save/NominationsRequestBody.json"), USER_ID_1);
-        upsertNomination(FileResources.fromFile("integration/nominations/save/AnotherNominationsRequestBody.json"), USER_ID_2);
+        upsertNomination(fromFile("integration/nominations/save/NominationsRequestBody.json"), USER_ID_1);
+        upsertNomination(fromFile("integration/nominations/save/AnotherNominationsRequestBody.json"), USER_ID_2);
 
         //when
         result = mockMvc.perform(get("/api/nominations"))
                 .andReturn();
 
         thenResponseCodeIs(OK);
-        thenResponseIsIdenticalTo(FileResources.fromFile("integration/nominations/get/GetAllResponse.json"));
+        thenResponseIsIdenticalTo(fromFile("integration/nominations/get/GetAllResponse.json"));
     }
 
     private void upsertNomination(String nominationForm, String userId) throws Exception {
-        mockMvc.perform(post("/api/nominations")
+        mockMvc.perform(post(String.format("/api/nominations/%s", userId))
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("X-Forwarded-For", userId)
                 .content(nominationForm));

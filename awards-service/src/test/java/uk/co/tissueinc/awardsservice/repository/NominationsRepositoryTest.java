@@ -50,7 +50,7 @@ class NominationsRepositoryTest {
 //        when(nominationsCRUDRepository.save(refEq(expectedEntity))).thenReturn(expectedEntity);
         when(nominationsCRUDRepository.save(any(NominationsFormEntity.class))).thenReturn(expectedEntity);
 
-        NominationsForm result = nominationsRepository.upsertForm(NOMINATIONS);
+        NominationsForm result = nominationsRepository.upsertForm(USER_ID_1, NOMINATIONS);
 
         assertThat(result).isEqualToComparingFieldByField(nominationsForm);
     }
