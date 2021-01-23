@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card *ngIf="isCategoriesStatusSuccess()">
   <div *ngFor="let category of categories">
     <mat-form-field appearance="fill">
       <mat-label>{{category}}</mat-label>
@@ -12,3 +12,16 @@
     </div>
   </div>
 </mat-card>
+
+<div class="central-spinner" *ngIf="isCategoriesStatusFetching()">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+
+<ng-container *ngIf="isCategoriesStatusError()">
+  <mat-card>
+    <mat-card-title>An Error occurred</mat-card-title>
+    <mat-card-content>
+      Unable to retrieve categories.
+    </mat-card-content>
+  </mat-card>
+</ng-container>

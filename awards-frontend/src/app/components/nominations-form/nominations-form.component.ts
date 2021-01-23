@@ -9,6 +9,7 @@ export class NominationsFormComponent implements OnInit {
 
   @Input() categories: string[];
   @Input() submitState: string;
+  @Input() categoriesStatus: string;
   @Output() submitButtonClick: EventEmitter<any> = new EventEmitter<any>();
 
   nominations: Map<string, string> = new Map<string, string>();
@@ -24,6 +25,18 @@ export class NominationsFormComponent implements OnInit {
 
   isSubmitStateFetching(): boolean {
     return this.submitState === 'FETCHING';
+  }
+
+  isCategoriesStatusFetching(): boolean {
+    return this.categoriesStatus === 'FETCHING';
+  }
+
+  isCategoriesStatusSuccess(): boolean {
+    return this.categoriesStatus === 'SUCCESS';
+  }
+
+  isCategoriesStatusError(): boolean {
+    return this.categoriesStatus === 'ERROR';
   }
 
 }

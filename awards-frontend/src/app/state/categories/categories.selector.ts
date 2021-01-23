@@ -6,3 +6,7 @@ export const categoriesReducerState: MemoizedSelector<object, CategoriesReducerM
 export const getCategories = createSelector(categoriesReducerState, (state: CategoriesReducerModel) => {
   return state.categories;
 });
+
+export const getCategoriesStatus = createSelector(categoriesReducerState, (state: CategoriesReducerModel) => {
+  return state.status;
+});

@@ -34,4 +34,61 @@ describe('NominationsFormComponent', () => {
 
     });
   });
+
+  describe('isCategoriesStatusFetching', () => {
+
+    it('should return true if categoriesStatus is FETCHING', () => {
+      component.categoriesStatus = 'FETCHING';
+
+      const result = component.isCategoriesStatusFetching();
+
+      expect(result).toBeTrue();
+    });
+
+    it('should return false if categoriesStatus is NOT FETCHING', () => {
+      component.categoriesStatus = 'SOMETHING';
+
+      const result = component.isCategoriesStatusFetching();
+
+      expect(result).toBeFalse();
+    });
+  });
+
+  describe('isCategoriesStatusSuccess', () => {
+
+    it('should return true if categoriesStatus is SUCCESS', () => {
+      component.categoriesStatus = 'SUCCESS';
+
+      const result = component.isCategoriesStatusSuccess();
+
+      expect(result).toBeTrue();
+    });
+
+    it('should return false if categoriesStatus is NOT SUCCESS', () => {
+      component.categoriesStatus = 'SOMETHING';
+
+      const result = component.isCategoriesStatusSuccess();
+
+      expect(result).toBeFalse();
+    });
+  });
+
+  describe('isCategoriesStatusError', () => {
+
+    it('should return true if categoriesStatus is ERROR', () => {
+      component.categoriesStatus = 'ERROR';
+
+      const result = component.isCategoriesStatusError();
+
+      expect(result).toBeTrue();
+    });
+
+    it('should return false if categoriesStatus is NOT ERROR', () => {
+      component.categoriesStatus = 'SUCCESS';
+
+      const result = component.isCategoriesStatusError();
+
+      expect(result).toBeFalse();
+    });
+  });
 });

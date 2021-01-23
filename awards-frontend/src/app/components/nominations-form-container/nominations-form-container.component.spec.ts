@@ -42,6 +42,15 @@ describe('NominationsFormContainerComponentComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  describe('ngOnInit', () => {
+    it('should select get categories status', () => {
+      let result: string;
+      component.categoriesStatus$.subscribe(status => result = status);
+
+      expect(result).toEqual('NEW');
+    });
+  });
+
   describe('submit', () => {
 
     it('should dispatch SubmitNominationsAction with nominations', () => {
