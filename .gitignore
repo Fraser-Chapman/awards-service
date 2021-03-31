@@ -6,6 +6,16 @@ bin/
 !**/src/main/**
 !**/src/test/**
 
+### API Gateway ###
+./api-gateway/build
+./api-gateway/.gradle
+./api-gateway/out
+
+### Awards-Service ###
+./awards-service/build
+./awards-service/.gradle
+./awards-service/out
+
 ### STS ###
 .apt_generated
 .classpath
