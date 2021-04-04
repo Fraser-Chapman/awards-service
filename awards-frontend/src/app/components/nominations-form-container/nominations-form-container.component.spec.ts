@@ -6,8 +6,12 @@ import {Store} from '@ngrx/store';
 import {provideMockStore} from '@ngrx/store/testing';
 import {CategoriesReducerModel} from '../../state/categories/model/categories-reducer-model';
 import {SubmitNominationsAction} from '../../state/nominations/nominations.actions';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import createSpyObj = jasmine.createSpyObj;
 
-describe('NominationsFormContainerComponentComponent', () => {
+describe('NominationsFormContainerComponent', () => {
+  const snackBarServiceSpy = createSpyObj(MatSnackBar, ['open']);
+
   let component: NominationsFormContainerComponent;
   let fixture: ComponentFixture<NominationsFormContainerComponent>;
   let store: Store<CategoriesReducerModel>;
@@ -25,7 +29,8 @@ describe('NominationsFormContainerComponentComponent', () => {
     TestBed.configureTestingModule({
       declarations: [NominationsFormContainerComponent],
       providers: [
-        provideMockStore({initialState})
+        provideMockStore({initialState}),
+        {provide: MatSnackBar, useValue: snackBarServiceSpy}
       ]
     })
       .compileComponents();
@@ -61,6 +66,12 @@ describe('NominationsFormContainerComponentComponent', () => {
       component.submit(nominations);
 
       expect(dispatchSpy).toHaveBeenCalledWith(new SubmitNominationsAction(nominations));
+    });
+
+    it('should call snack bar service to open snack bar', () => {
+      component.submit(new Map());
+
+      expect(snackBarServiceSpy.open).toHaveBeenCalledWith('Nominations submitted', 'Okay', {duration: 10000});
     });
   });
 

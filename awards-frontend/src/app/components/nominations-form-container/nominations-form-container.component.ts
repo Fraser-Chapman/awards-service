@@ -4,6 +4,7 @@ import {getCategories, getCategoriesStatus} from '../../state/categories/categor
 import {Observable} from 'rxjs';
 import {SubmitNominationsAction} from '../../state/nominations/nominations.actions';
 import {getSubmitNominationsState} from '../../state/nominations/nominations.selector';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-nominations-form-container-component',
@@ -12,11 +13,13 @@ import {getSubmitNominationsState} from '../../state/nominations/nominations.sel
 })
 export class NominationsFormContainerComponent implements OnInit {
 
+  private readonly TEN_SECONDS = 10000;
+
   categories$: Observable<string[]>;
   categoriesStatus$: Observable<string>;
   submitState$: Observable<string>;
 
-  constructor(private store: Store<any>) { }
+  constructor(private store: Store<any>, private snackBarService: MatSnackBar) { }
 
   ngOnInit() {
     this.categories$ = this.store.select(getCategories);
@@ -26,6 +29,7 @@ export class NominationsFormContainerComponent implements OnInit {
 
   submit(nominations: Map<string, string>): void {
     this.store.dispatch(new SubmitNominationsAction(nominations));
+    this.snackBarService.open('Nominations submitted', 'Okay', {duration: this.TEN_SECONDS});
   }
 
 }

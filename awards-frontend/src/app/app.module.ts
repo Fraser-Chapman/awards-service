@@ -31,6 +31,7 @@ import {resultsReducer} from './state/results/results.reducer';
 import {ResultsEffects} from './state/results/results.effects';
 import {ViewResultsResolver} from './resolvers/ViewResultsResolver';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
   providers: [
     NominationsFormResolver,
     ViewResultsResolver
+  ],
+  exports: [
+    MatSnackBarModule
   ],
   bootstrap: [AppComponent]
 })
