@@ -29,6 +29,13 @@ export class NominationsFormContainerComponent implements OnInit {
 
   submit(nominations: Map<string, string>): void {
     this.store.dispatch(new SubmitNominationsAction(nominations));
+  }
+
+  submitFailed(): void {
+    this.snackBarService.open('Failed to submit nominations',  'Okay', {duration: this.TEN_SECONDS});
+  }
+
+  submitSuccess(): void {
     this.snackBarService.open('Nominations submitted', 'Okay', {duration: this.TEN_SECONDS});
   }
 

@@ -3,4 +3,6 @@
   [submitState]="submitState$ | async"
   [categoriesStatus]="categoriesStatus$ | async"
   (submitButtonClick)="submit($event)"
+  (submitNominationsFailed)="submitFailed()"
+  (submitNominationsSuccess)="submitSuccess()"
 ></app-nominations-form>

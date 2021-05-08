@@ -57,7 +57,6 @@ describe('NominationsFormContainerComponent', () => {
   });
 
   describe('submit', () => {
-
     it('should dispatch SubmitNominationsAction with nominations', () => {
       const dispatchSpy = spyOn(store, 'dispatch');
       const nominations = new Map<string, string>();
@@ -67,9 +66,19 @@ describe('NominationsFormContainerComponent', () => {
 
       expect(dispatchSpy).toHaveBeenCalledWith(new SubmitNominationsAction(nominations));
     });
+  });
 
+  describe('submitFailed', () => {
     it('should call snack bar service to open snack bar', () => {
-      component.submit(new Map());
+      component.submitFailed();
+
+      expect(snackBarServiceSpy.open).toHaveBeenCalledWith('Failed to submit nominations', 'Okay', {duration: 10000});
+    });
+  });
+
+  describe('submitSuccess', () => {
+    it('should call snack bar service to open snack bar', () => {
+      component.submitSuccess();
 
       expect(snackBarServiceSpy.open).toHaveBeenCalledWith('Nominations submitted', 'Okay', {duration: 10000});
     });

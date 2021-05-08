@@ -23,8 +23,49 @@ describe('NominationsFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('submit', () => {
+  describe('ngOnChanges', () => {
+    describe('submitNominationsFailed', () => {
+      it('should emit submit failed event if submit status is ERROR', () => {
+        component.submitNominationsFailed = jasmine.createSpyObj('EventEmitter', ['emit']);
+        component.submitState = 'ERROR';
 
+        component.ngOnChanges();
+
+        expect(component.submitNominationsFailed.emit).toHaveBeenCalled();
+      });
+
+      it('should NOT emit submit failed event if submit status is NOT ERROR', () => {
+        component.submitNominationsFailed = jasmine.createSpyObj('EventEmitter', ['emit']);
+        component.submitState = 'SUCCESS';
+
+        component.ngOnChanges();
+
+        expect(component.submitNominationsFailed.emit).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('submitNominationsSuccess', () => {
+      it('should emit submit success event if submit status is SUCCESS', () => {
+        component.submitNominationsSuccess = jasmine.createSpyObj('EventEmitter', ['emit']);
+        component.submitState = 'SUCCESS';
+
+        component.ngOnChanges();
+
+        expect(component.submitNominationsSuccess.emit).toHaveBeenCalled();
+      });
+
+      it('should NOT emit submit success event if submit status is NOT SUCCESS', () => {
+        component.submitNominationsSuccess = jasmine.createSpyObj('EventEmitter', ['emit']);
+        component.submitState = 'ERROR';
+
+        component.ngOnChanges();
+
+        expect(component.submitNominationsSuccess.emit).not.toHaveBeenCalled();
+      });
+    });
+  });
+
+  describe('submit', () => {
     it('should emit submit button clicked event with nominations', () => {
       component.submitButtonClick = jasmine.createSpyObj('EventEmitter', ['emit']);
 
@@ -36,7 +77,6 @@ describe('NominationsFormComponent', () => {
   });
 
   describe('isCategoriesStatusFetching', () => {
-
     it('should return true if categoriesStatus is FETCHING', () => {
       component.categoriesStatus = 'FETCHING';
 
@@ -55,7 +95,6 @@ describe('NominationsFormComponent', () => {
   });
 
   describe('isCategoriesStatusSuccess', () => {
-
     it('should return true if categoriesStatus is SUCCESS', () => {
       component.categoriesStatus = 'SUCCESS';
 
@@ -74,7 +113,6 @@ describe('NominationsFormComponent', () => {
   });
 
   describe('isCategoriesStatusError', () => {
-
     it('should return true if categoriesStatus is ERROR', () => {
       component.categoriesStatus = 'ERROR';
 
