@@ -11,6 +11,7 @@ import uk.co.tissueinc.awardsservice.service.model.NominationsForm;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -71,5 +72,14 @@ class AwardsServiceTest {
         List<CategoryAward> result = testSubject.getAwards();
         final List<CategoryAward> expectedResult = List.of(new CategoryAward(CATEGORY_ONE, String.format("%s, %s", PERSON_2, PERSON_1), List.of(PERSON_2, PERSON_1)));
         assertThat(result).usingRecursiveComparison().isEqualTo(expectedResult);
+    }
+
+    @Test
+    public void shouldHandleNoNominationsBeingSubmittedYet() {
+        when(nominationsService.getNominations()).thenReturn(emptyList());
+
+        final List<CategoryAward> result = testSubject.getAwards();
+
+        assertThat(result).isEmpty();
     }
 }
