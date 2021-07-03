@@ -16,6 +16,9 @@ describe('ViewResultsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ViewResultsComponent);
     component = fixture.componentInstance;
+    component.results = {
+      awards: []
+    };
     fixture.detectChanges();
   });
 

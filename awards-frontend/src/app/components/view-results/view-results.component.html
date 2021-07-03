@@ -23,11 +23,17 @@
   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 </ng-container>
 
+<ng-container *ngIf="results.awards.length === 0">
+  <mat-card>
+    <mat-card-title>No nominations have been submitted yet.</mat-card-title>
+  </mat-card>
+</ng-container>
+
 <ng-container *ngIf="isStatusError()">
   <mat-card>
     <mat-card-title>An Error occurred</mat-card-title>
     <mat-card-content>
-      Unable to retrieve results. Have any nominations been submitted?
+      Unable to retrieve results.
     </mat-card-content>
   </mat-card>
 </ng-container>
